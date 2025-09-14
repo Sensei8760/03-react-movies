@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Loader.module.css";
+import styles from './Loader.module.css';
 
+const Loader = () => {
+  return <p className={styles.text}>Loading movies, please wait...</p>;
+};
 
-export default function Loader(): JSX.Element {
-return <p className={styles.text}>Loading movies, please wait...</p>;
-}
+export default Loader;

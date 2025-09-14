@@ -1,34 +1,31 @@
-import React from "react";
-import type { Movie } from "../../types/movie";
-import styles from "./MovieGrid.module.css";
+import styles from './MovieGrid.module.css';
+import type { Movie } from '../../types/movie';
 
-
-interface MovieGridProps {
-movies: Movie[];
-onSelect: (movie: Movie) => void;
+export interface MovieGridProps {
+  movies: Movie[];
+  onSelect: (movie: Movie) => void;
 }
 
+const MovieGrid = ({ movies, onSelect }: MovieGridProps) => {
+  if (movies.length === 0) return null;
 
-export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
-return (
-<ul className={styles.grid}>
-{movies.map((movie) => (
-<li key={movie.id} className={styles.item}>
-<div className={styles.card} onClick={() => onSelect(movie)}>
-<img
-className={styles.image}
-src={
-movie.poster_path
-? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-: "https://via.placeholder.com/300x450?text=No+Image"
-}
-alt={movie.title}
-loading="lazy"
-/>
-<h2 className={styles.title}>{movie.title}</h2>
-</div>
-</li>
-))}
-</ul>
-);
-}
+  return (
+    <ul className={styles.grid}>
+      {movies.map((movie) => (
+        <li key={movie.id}>
+          <div className={styles.card} onClick={() => onSelect(movie)}>
+            <img
+              className={styles.image}
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+              loading="lazy"
+            />
+            <h2 className={styles.title}>{movie.title}</h2>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default MovieGrid;
